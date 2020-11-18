@@ -1,0 +1,10 @@
+name: CrashedTroll
+version: 3.0.0
+author: CrashedLife
+main: de.crasheddevelopment.spigot.crashedtroll.CrashedTroll
+commands:
+  crashedtroll:
+    description: "Main command of this plugin!"
+    aliases:
+      - troll
+      - ct
