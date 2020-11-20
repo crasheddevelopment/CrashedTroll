@@ -20,10 +20,10 @@ import de.crasheddevelopment.spigot.crashedtroll.utils.StringUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class UpdateSubListener extends SubListener
+public class LanguageFileOutdatedSubListener extends SubListener
 {
     // Constructor.
-    public UpdateSubListener ()
+    public LanguageFileOutdatedSubListener ()
     {
         super(new ListenerType[] {ListenerType.JOIN});
     }
@@ -32,17 +32,16 @@ public class UpdateSubListener extends SubListener
     @Override
     public void onJoinEvent (PlayerJoinEvent playerJoinEvent)
     {
-        // Check if a update is available.
-        if (Constants.UPDATE_AVAILABLE)
-        {
-            // Initialize variable.
-            Player player = playerJoinEvent.getPlayer();
+        // Initialize variable.
+        Player player = playerJoinEvent.getPlayer();
 
-            // Check if the player has the permission.
-            if (player.hasPermission("crashedtroll.permissions.update.notification"))
+        // Check if the player has the permission and if the language file is outdated.
+        if (player.hasPermission("crashedtroll.permissions.language.outdated"))
+        {
+            if (Constants.LANGUAGE_FILE_OUTDATED)
             {
-                // Message for new a new update.
-                StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("UPDATE_FOUND"));
+                // Shows message.
+                StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("LANGUAGE_FILE_OUTDATED"));
             }
         }
     }

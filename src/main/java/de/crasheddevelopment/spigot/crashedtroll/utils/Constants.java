@@ -12,17 +12,21 @@
 
 package de.crasheddevelopment.spigot.crashedtroll.utils;
 
+import de.crasheddevelopment.spigot.crashedtroll.CrashedTroll;
 import org.bukkit.entity.Player;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Constants
 {
     // Version string.
-    public static final String VERSION = "3.0.0";
+    public static final String VERSION = "3.1.0";
 
     // Build string.
-    public static final String BUILD = "8";
+    public static final String BUILD = "9";
 
     // Plugin prefix string.
     public static final String PREFIX = "§7[§5§lCrashedTroll§7]: ";
@@ -30,20 +34,35 @@ public class Constants
     // Plugin team chat prefix string.
     public static final String TEAM_CHAT_PREFIX = "§7[§5§lCrashedTroll TeamChat§7]: §6";
 
-    // Plugin no permissions string.
-    public static final String NO_PERMISSIONS = PREFIX + "§cYou do not have permissions to execute this command!";
+    public static final HashMap<String, String> LANGUAGE_HASH_MAP = new HashMap<>();
 
-    // Plugin player is offline string.
-    public static final String PLAYER_OFFLINE = PREFIX + "§cThis player is not online!";
-
-    // Variable for the UpdateListener.
+    // Variable for the update listener.
     public static boolean UPDATE_AVAILABLE = false;
+
+    // Variable for the language file outdated listener.
+    public static boolean LANGUAGE_FILE_OUTDATED = false;
+
+    // Language variable.
+    public static String LANGUAGE = "ENGLISH";
+
+    // Returns the plugin folder.
+    public static Path getPluginFolder (String otherPath)
+    {
+        if (otherPath != null)
+        {
+            return StringUtils.getOSPath(Paths.get(CrashedTroll.getPlugin(CrashedTroll.class).getDataFolder().getPath() + "\\" + otherPath));
+        }
+        else
+        {
+            return StringUtils.getOSPath(Paths.get(CrashedTroll.getPlugin(CrashedTroll.class).getDataFolder().getPath()));
+        }
+    }
 
     // Player arraylists for events.
     public static final ArrayList<Player> FREEZE_ARRAYLIST = new ArrayList<>();
+    public static final ArrayList<Player> GODMODE_ARRAYLIST = new ArrayList<>();
     public static final ArrayList<Player> NO_BLOCK_BREAK_ARRAYLIST = new ArrayList<>();
     public static final ArrayList<Player> NO_BLOCK_PLACE_ARRAYLIST = new ArrayList<>();
-    public static final ArrayList<Player> GODMODE_ARRAYLIST = new ArrayList<>();
-    public static final ArrayList<Player> TEAM_CHAT_ARRAYLIST = new ArrayList<>();
     public static final ArrayList<Player> SCREEN_BLOCK_ARRAYLIST = new ArrayList<>();
+    public static final ArrayList<Player> TEAM_CHAT_ARRAYLIST = new ArrayList<>();
 }

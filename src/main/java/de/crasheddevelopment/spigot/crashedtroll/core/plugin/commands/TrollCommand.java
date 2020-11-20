@@ -65,15 +65,15 @@ public class TrollCommand implements CommandExecutor
                             else
                             {
                                 // Message if the player has no permissions.
-                                player.sendMessage(Constants.NO_PERMISSIONS);
+                                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
                             }
                             return true;
                         }
                     }
 
                     // Message if the command not found.
-                    StringUtils.sendPlayerMessage(player, "§cCommand not found!");
-                    StringUtils.sendPlayerMessage(player, "§cEnter /ct help for help!");
+                    StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("COMMAND_NOT_FOUND"));
+                    StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("HELP_MESSAGE"));
                 }
                 else
                 {

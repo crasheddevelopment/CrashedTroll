@@ -20,11 +20,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ScreenSubListener extends SubListener
 {
+    // Constructor.
     public ScreenSubListener ()
     {
         super(new ListenerType[] {ListenerType.QUIT});
     }
 
+    // Quit event.
     @Override
     public void onQuitEvent (PlayerQuitEvent playerQuitEvent)
     {

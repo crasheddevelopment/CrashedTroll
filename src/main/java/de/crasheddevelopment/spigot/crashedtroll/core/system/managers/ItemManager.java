@@ -12,6 +12,7 @@
 
 package de.crasheddevelopment.spigot.crashedtroll.core.system.managers;
 
+import de.crasheddevelopment.spigot.crashedtroll.CrashedTroll;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -22,7 +23,7 @@ import java.util.List;
 public class ItemManager
 {
     // Initialize variable.
-    private final ItemStack trollItemStack = this.createItem(Material.CAKE, "§cTroll Item", Collections.singletonList("§bItem to troll other players."));
+    private final ItemStack trollItemStack = this.createItem(Material.CAKE, "§cTroll Item", Collections.singletonList("§b" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TROLL_ITEM_DESCRIPTION")));
 
     // Creates an item.
     public ItemStack createItem (Material material, String itemStackName, List<String> lore)

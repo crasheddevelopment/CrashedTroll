@@ -19,16 +19,20 @@ import java.util.ArrayList;
 
 public class SubCommandManager
 {
+    // Initialize variable.
     private final ArrayList<SubCommand> subCommandArrayList = new ArrayList<>();
 
+    // Reload the sub commands.
     public void reloadSubCommands ()
     {
-        this.subCommandArrayList.add(new GodmodeCommand());
+        this.subCommandArrayList.add(new ChangelogSubCommand());
         this.subCommandArrayList.add(new DropSubCommand());
         this.subCommandArrayList.add(new ExplodeSubCommand());
         this.subCommandArrayList.add(new FakeOPSubCommand());
         this.subCommandArrayList.add(new FreezeSubCommand());
+        this.subCommandArrayList.add(new GodmodeCommand());
         this.subCommandArrayList.add(new InventoryDropSubCommand());
+        this.subCommandArrayList.add(new LanguageSubCommand());
         this.subCommandArrayList.add(new NoBlockBreakSubCommand());
         this.subCommandArrayList.add(new NoBlockPlaceSubCommand());
         this.subCommandArrayList.add(new RocketSubCommand());
@@ -37,6 +41,7 @@ public class SubCommandManager
         this.subCommandArrayList.add(new TrollItemSubCommand());
     }
 
+    // Returns the arraylist.
     public ArrayList<SubCommand> getSubCommandArrayList ()
     {
         return this.subCommandArrayList;

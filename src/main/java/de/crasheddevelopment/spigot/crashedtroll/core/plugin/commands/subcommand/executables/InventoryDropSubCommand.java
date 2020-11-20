@@ -16,10 +16,10 @@ import de.crasheddevelopment.spigot.crashedtroll.CrashedTroll;
 import de.crasheddevelopment.spigot.crashedtroll.core.plugin.commands.subcommand.SubCommand;
 import de.crasheddevelopment.spigot.crashedtroll.enums.ItemInventoryType;
 import de.crasheddevelopment.spigot.crashedtroll.utils.BukkitUtils;
-import de.crasheddevelopment.spigot.crashedtroll.utils.Constants;
 import de.crasheddevelopment.spigot.crashedtroll.utils.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Collections;
 
@@ -28,7 +28,7 @@ public class InventoryDropSubCommand extends SubCommand
     // Constructor.
     public InventoryDropSubCommand ()
     {
-        super("inventorydrop", "Drops from the target the whole inventory!", "crashedtroll.permissions.troll.inventorydrop", "inventorydrop <Player>", "crashedtroll inventorydrop <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.PISTON_STICKY_BASE, "§cInventory Drop", Collections.singletonList("§eDrops from the target the whole inventory!")), ItemInventoryType.OTHER);
+        super("inventorydrop", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVENTORY_DROP_DESCRIPTION"), "crashedtroll.permissions.troll.inventorydrop", "inventorydrop <Player>", "crashedtroll inventorydrop <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.PISTON_STICKY_BASE, "§cInventory Drop", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVENTORY_DROP_DESCRIPTION"))), ItemInventoryType.OTHER);
     }
 
     // Called method.
@@ -44,29 +44,40 @@ public class InventoryDropSubCommand extends SubCommand
             // Check if the player is online or not.
             if (targetPlayer != null)
             {
-                // Checks every slot in the inventory, and if it's contain a valid item, it will be automatically dropped.
-                for (int inventorySlot = 0; inventorySlot < targetPlayer.getInventory().getSize(); inventorySlot ++)
+                // Checks the inventory content for an available itemstack and drops it.
+                for (ItemStack itemStack : targetPlayer.getInventory().getContents())
                 {
-                    if ((targetPlayer.getInventory().getItem(inventorySlot) != null) && (!(targetPlayer.getInventory().getItem(inventorySlot).getType().equals(Material.AIR))))
+                    if ((itemStack != null) && !(itemStack.getType().equals(Material.AIR)))
                     {
-                        targetPlayer.getWorld().dropItemNaturally(targetPlayer.getLocation(), targetPlayer.getInventory().getItem(inventorySlot)).setPickupDelay(40);
-                        targetPlayer.getInventory().removeItem(targetPlayer.getInventory().getItem(inventorySlot));
+                        targetPlayer.getWorld().dropItemNaturally(targetPlayer.getLocation(), itemStack).setPickupDelay(40);
+                        targetPlayer.getInventory().removeItem(itemStack);
                     }
                 }
 
-                StringUtils.sendPlayerMessage(player, "§a" + targetPlayer.getName() + " drops his whole inventory!");
+                // Checks the inventory armor content for an available itemstack and drops it.
+                for (ItemStack itemStack : targetPlayer.getInventory().getArmorContents())
+                {
+                    if ((itemStack != null) && !(itemStack.getType().equals(Material.AIR)))
+                    {
+                        targetPlayer.getWorld().dropItemNaturally(targetPlayer.getLocation(), itemStack).setPickupDelay(40);
+                        targetPlayer.getInventory().removeItem(itemStack);
+                    }
+                }
+
+                // Message.
+                StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVENTORY_DROP_TARGET_DROP").replace("{PLAYER_NAME}", targetPlayer.getName()));
             }
             else
             {
                 // Message if the player is offline.
-                player.sendMessage(Constants.PLAYER_OFFLINE);
+                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("PLAYER_OFFLINE"));
             }
         }
         else
         {
             // Invalid arguments message.
-            StringUtils.sendPlayerMessage(player, "§cInvalid command arguments!");
-            StringUtils.sendPlayerMessage(player, "§c/ct " + this.getCommandSyntax());
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVALID_COMMAND_ARGUMENTS"));
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("COMMAND_SYNTAX_MESSAGE").replace("{SYNTAX}", this.getCommandSyntax()));
         }
     }
 }

@@ -29,7 +29,7 @@ public class RocketSubCommand extends SubCommand
     // Constructor.
     public RocketSubCommand ()
     {
-        super("rocket", "Makes the target woooosh!", "crashedtroll.permissions.troll.rocket", "rocket <Player>", "crashedtroll rocket <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.FIREWORK, "§cRocket", Collections.singletonList("§eMakes the target woooosh!")), ItemInventoryType.OTHER);
+        super("rocket", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("ROCKET_DESCRIPTION"), "crashedtroll.permissions.troll.rocket", "rocket <Player>", "crashedtroll rocket <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.FIREWORK, "§cRocket", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("ROCKET_DESCRIPTION"))), ItemInventoryType.OTHER);
     }
 
     // Called method.
@@ -50,19 +50,19 @@ public class RocketSubCommand extends SubCommand
                 targetPlayer.setVelocity(targetPlayer.getLocation().getDirection().multiply(0.5).setY(3.8));
                 targetPlayer.playSound(targetPlayer.getLocation(), Sound.BURP, 100, 25);
                 targetPlayer.setAllowFlight(false);
-                StringUtils.sendPlayerMessage(player, "§a" + targetPlayer.getName() + " got whooooosed!");
+                StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("ROCKET_PLAYER_LAUNCH").replace("{PLAYER_NAME}", targetPlayer.getName()));
             }
             else
             {
                 // Message if the player is offline.
-                player.sendMessage(Constants.PLAYER_OFFLINE);
+                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("PLAYER_OFFLINE"));
             }
         }
         else
         {
             // Invalid arguments message.
-            StringUtils.sendPlayerMessage(player, "§cInvalid command arguments!");
-            StringUtils.sendPlayerMessage(player, "§c/ct " + this.getCommandSyntax());
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVALID_COMMAND_ARGUMENTS"));
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("COMMAND_SYNTAX_MESSAGE").replace("{SYNTAX}", this.getCommandSyntax()));
         }
     }
 }

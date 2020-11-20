@@ -27,7 +27,7 @@ public class GodmodeCommand extends SubCommand
     // Constructor.
     public GodmodeCommand ()
     {
-        super("godmode", "You are the god!", "crashedtroll.permissions.troll.godmode", "godmode", "crashedtroll godmode", CrashedTroll.ITEM_MANAGER.createItem(Material.BEDROCK, "§cGodmode", Collections.singletonList("§eYou are the god!")), ItemInventoryType.OWN);
+        super("godmode", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("GODMODE_DESCRIPTION"), "crashedtroll.permissions.troll.godmode", "godmode", "crashedtroll godmode", CrashedTroll.ITEM_MANAGER.createItem(Material.BEDROCK, "§cGodmode", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("GODMODE_DESCRIPTION"))), ItemInventoryType.OWN);
     }
 
     // Called method.
@@ -39,13 +39,17 @@ public class GodmodeCommand extends SubCommand
         {
             // Adds the player to the godmode arraylist.
             Constants.GODMODE_ARRAYLIST.add(player);
-            StringUtils.sendPlayerMessage(player, "§aYou have enabled the godmode!");
+            StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("GODMODE_ENABLED"));
+
+            // Heals and feeds the player.
+            player.setHealth(20);
+            player.setFoodLevel(20);
         }
         else
         {
             // Removes the player from the godmode arraylist.
             Constants.GODMODE_ARRAYLIST.remove(player);
-            StringUtils.sendPlayerMessage(player, "§cYou have disabled the godmode!");
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("GODMODE_DISABLED"));
         }
     }
 }

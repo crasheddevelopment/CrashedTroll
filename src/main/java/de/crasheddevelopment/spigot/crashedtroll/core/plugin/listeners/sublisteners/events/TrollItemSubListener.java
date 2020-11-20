@@ -18,7 +18,6 @@ import de.crasheddevelopment.spigot.crashedtroll.core.plugin.listeners.sublisten
 import de.crasheddevelopment.spigot.crashedtroll.enums.ItemInventoryType;
 import de.crasheddevelopment.spigot.crashedtroll.enums.ListenerType;
 import de.crasheddevelopment.spigot.crashedtroll.utils.BukkitUtils;
-import de.crasheddevelopment.spigot.crashedtroll.utils.Constants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -56,8 +55,8 @@ public class TrollItemSubListener extends SubListener
     private void setInventoryItems ()
     {
         // Set items.
-        this.inventory.setItem(1, CrashedTroll.ITEM_MANAGER.createItem(Material.SNOW_BALL, "§5Player", Collections.singletonList("§6Functions for the own player!")));
-        this.inventory.setItem(3, CrashedTroll.ITEM_MANAGER.createItem(Material.SNOW_BALL, "§eOther Players", Collections.singletonList("§6Functions for other player to troll!")));
+        this.inventory.setItem(1, CrashedTroll.ITEM_MANAGER.createItem(Material.SNOW_BALL, "§5Player", Collections.singletonList("§6" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TROLL_ITEM_PLAYER_ITEM_DESCRIPTION"))));
+        this.inventory.setItem(3, CrashedTroll.ITEM_MANAGER.createItem(Material.SNOW_BALL, "§eOther Players", Collections.singletonList("§6" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TROLL_ITEM_OTHER_PLAYER_ITEM_DESCRIPTION"))));
 
         // Set items from the subcommands to the inventory types.
         for (SubCommand subCommand : CrashedTroll.SUB_COMMAND_MANAGER.getSubCommandArrayList())
@@ -93,7 +92,7 @@ public class TrollItemSubListener extends SubListener
             {
                 // Removes the item.
                 player.getInventory().removeItem(CrashedTroll.ITEM_MANAGER.getTrollItemStack());
-                player.sendMessage(Constants.NO_PERMISSIONS);
+                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
             }
         }
     }
@@ -124,7 +123,7 @@ public class TrollItemSubListener extends SubListener
                 {
                     // Removes the item.
                     player.getInventory().removeItem(player.getInventory().getItemInHand());
-                    player.sendMessage(Constants.NO_PERMISSIONS);
+                    player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
                 }
             }
         }
@@ -171,7 +170,7 @@ public class TrollItemSubListener extends SubListener
                                     // Check the itemstack from the subcommand.
                                     for (SubCommand subCommand : CrashedTroll.SUB_COMMAND_MANAGER.getSubCommandArrayList())
                                     {
-                                        if (subCommand.getItemStack().equals(subCommandItemStack))
+                                        if ((subCommand.getItemStack() != null) && (subCommand.getItemStack().equals(subCommandItemStack)))
                                         {
                                             // Check if the subcommand has modes.
                                             if (subCommand.hasModes())
@@ -205,7 +204,7 @@ public class TrollItemSubListener extends SubListener
                         {
                             // Removes the item from the player.
                             player.getInventory().removeItem(player.getInventory().getItemInHand());
-                            player.sendMessage(Constants.NO_PERMISSIONS);
+                            player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
 
                             // Closes the inventory.
                             player.closeInventory();
@@ -258,7 +257,7 @@ public class TrollItemSubListener extends SubListener
                         {
                             // Removes the item from the player.
                             player.getInventory().removeItem(player.getInventory().getItemInHand());
-                            player.sendMessage(Constants.NO_PERMISSIONS);
+                            player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
 
                             // Closes the inventory.
                             player.closeInventory();
@@ -293,7 +292,7 @@ public class TrollItemSubListener extends SubListener
                 {
                     // Removes the item from the player and closes the inventory.
                     player.getInventory().removeItem(player.getInventory().getItemInHand());
-                    player.sendMessage(Constants.NO_PERMISSIONS);
+                    player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
                     player.closeInventory();
                 }
             }
@@ -326,7 +325,7 @@ public class TrollItemSubListener extends SubListener
                 {
                     // Removes the item from the player and closes the inventory.
                     player.getInventory().removeItem(player.getInventory().getItemInHand());
-                    player.sendMessage(Constants.NO_PERMISSIONS);
+                    player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
                     player.closeInventory();
                 }
             }
@@ -355,7 +354,7 @@ public class TrollItemSubListener extends SubListener
                 {
                     // Removes the item from the player and closes the inventory.
                     player.getInventory().removeItem(player.getInventory().getItemInHand());
-                    player.sendMessage(Constants.NO_PERMISSIONS);
+                    player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_PERMISSIONS"));
                     player.closeInventory();
                 }
             }

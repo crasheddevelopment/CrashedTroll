@@ -24,7 +24,7 @@ public class TrollItemSubCommand extends SubCommand
     // Constructor.
     public TrollItemSubCommand ()
     {
-        super("item", "Get the troll item!", "crashedtroll.permissions.troll.trollitem", "crashedtroll item", "crashedtroll item", null, ItemInventoryType.NONE);
+        super("item", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TROLL_ITEM_DESCRIPTION"), "crashedtroll.permissions.troll.trollitem", "item", "crashedtroll item", null, ItemInventoryType.NONE);
     }
 
     // Called method.
@@ -46,13 +46,13 @@ public class TrollItemSubCommand extends SubCommand
             else
             {
                 // Message if the inventory is full.
-                StringUtils.sendPlayerMessage(player, "§cYou cannot get this item!");
+                StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVENTORY_FULL"));
             }
         }
         else
         {
             // Message if the player has already this item.
-            StringUtils.sendPlayerMessage(player, "§cYou have already this item!");
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TROLL_ITEM_ALREADY_OWNED"));
         }
     }
 }

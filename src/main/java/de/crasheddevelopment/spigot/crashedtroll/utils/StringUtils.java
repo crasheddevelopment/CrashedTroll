@@ -15,6 +15,10 @@ package de.crasheddevelopment.spigot.crashedtroll.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class StringUtils
 {
     // Sends an empty line to the console.
@@ -58,5 +62,11 @@ public class StringUtils
                 onlinePlayers.sendMessage(Constants.TEAM_CHAT_PREFIX + "§7<§e" + player.getName() + "§7>: §a" + message);
             }
         }
+    }
+
+    // Returns the system related path.
+    public static Path getOSPath (Path path)
+    {
+        return Paths.get(path.toString().trim().replace("\\", File.separator));
     }
 }

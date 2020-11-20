@@ -12,6 +12,7 @@
 
 package de.crasheddevelopment.spigot.crashedtroll.core.plugin.listeners.sublisteners.events;
 
+import de.crasheddevelopment.spigot.crashedtroll.CrashedTroll;
 import de.crasheddevelopment.spigot.crashedtroll.core.plugin.listeners.sublisteners.SubListener;
 import de.crasheddevelopment.spigot.crashedtroll.enums.ListenerType;
 import de.crasheddevelopment.spigot.crashedtroll.utils.Constants;
@@ -22,32 +23,41 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class TeamChatSubListener extends SubListener
 {
+    // Constructor.
     public TeamChatSubListener ()
     {
         super(new ListenerType[] {ListenerType.ASYNCPLAYERCHAT, ListenerType.QUIT});
     }
 
+    // AsyncPlayerChat event.
     @Override
     public void onAsyncPlayerChatEvent (AsyncPlayerChatEvent asyncPlayerChatEvent)
     {
+        // Initialize variables.
         Player player = asyncPlayerChatEvent.getPlayer();
         String message = asyncPlayerChatEvent.getMessage();
 
+        // Check if the player contains in the team chat arraylist.
         if (Constants.TEAM_CHAT_ARRAYLIST.contains(player))
         {
+            // Sends the team message.
             StringUtils.sendTeamMessage(player, message);
             asyncPlayerChatEvent.setCancelled(true);
         }
     }
 
+    // Quit event
     @Override
     public void onQuitEvent (PlayerQuitEvent playerQuitEvent)
     {
+        // Initialize variable.
         Player player = playerQuitEvent.getPlayer();
 
+        // Check if the player contains in the team chat arraylist.
         if (Constants.TEAM_CHAT_ARRAYLIST.contains(player))
         {
-            StringUtils.sendTeamBroadcast("§c" + player.getName() + " logged out from the teamchat!");
+            // Removes the player from the team chat arraylist.
+            StringUtils.sendTeamBroadcast("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TEAM_CHAT_BROADCAST_LOGOUT").replace("{PLAYER_NAME}", player.getName()));
             Constants.TEAM_CHAT_ARRAYLIST.remove(player);
         }
     }

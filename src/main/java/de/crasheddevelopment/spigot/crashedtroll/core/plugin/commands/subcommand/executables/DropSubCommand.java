@@ -16,7 +16,6 @@ import de.crasheddevelopment.spigot.crashedtroll.CrashedTroll;
 import de.crasheddevelopment.spigot.crashedtroll.core.plugin.commands.subcommand.SubCommand;
 import de.crasheddevelopment.spigot.crashedtroll.enums.ItemInventoryType;
 import de.crasheddevelopment.spigot.crashedtroll.utils.BukkitUtils;
-import de.crasheddevelopment.spigot.crashedtroll.utils.Constants;
 import de.crasheddevelopment.spigot.crashedtroll.utils.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -28,7 +27,7 @@ public class DropSubCommand extends SubCommand
     // Constructor.
     public DropSubCommand ()
     {
-        super("drop", "Makes the target drop his item, which he hold in his hand!", "crashedtroll.permissions.troll.drop", "drop <Player>", "crashedtroll drop <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.PISTON_BASE, "§cDrop", Collections.singletonList("§eMakes the target drop his item, which he hold in his hand!")), ItemInventoryType.OTHER);
+        super("drop", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("DROP_DESCRIPTION"), "crashedtroll.permissions.troll.drop", "drop <Player>", "crashedtroll drop <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.PISTON_BASE, "§cDrop", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("DROP_DESCRIPTION"))), ItemInventoryType.OTHER);
     }
 
     // Called method.
@@ -50,25 +49,25 @@ public class DropSubCommand extends SubCommand
                     // Drops the item, and remove it from the inventory.
                     targetPlayer.getWorld().dropItemNaturally(targetPlayer.getLocation(), targetPlayer.getItemInHand()).setPickupDelay(40);
                     targetPlayer.getInventory().removeItem(targetPlayer.getItemInHand());
-                    StringUtils.sendPlayerMessage(player, "§a" + targetPlayer.getName() + " drops his item now!");
+                    StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("DROP_PLAYER_ITEM_DROP").replace("{PLAYER_NAME}", targetPlayer.getName()));
                 }
                 else
                 {
                     // Message if the player not has any valid item in his hand!
-                    StringUtils.sendPlayerMessage(player, "§c" + targetPlayer.getName() + " didn't hold any item!");
+                    StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("DROP_PLAYER_NOT_HOLD_ANY_ITEM").replace("{PLAYER_NAME}", targetPlayer.getName()));
                 }
             }
             else
             {
                 // Message if the player is offline.
-                player.sendMessage(Constants.PLAYER_OFFLINE);
+                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("PLAYER_OFFLINE"));
             }
         }
         else
         {
             // Invalid arguments message.
-            StringUtils.sendPlayerMessage(player, "§cInvalid command arguments!");
-            StringUtils.sendPlayerMessage(player, "§c/ct " + this.getCommandSyntax());
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVALID_COMMAND_ARGUMENTS"));
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("COMMAND_SYNTAX_MESSAGE").replace("{SYNTAX}", this.getCommandSyntax()));
         }
     }
 }

@@ -28,7 +28,7 @@ public class NoBlockPlaceSubCommand extends SubCommand
     // Constructor.
     public NoBlockPlaceSubCommand ()
     {
-        super("noblockplace", "Prevents target from placing blocks!", "crashedtroll.permissions.troll.noblockplace", "noblockplace <Player>", "crashedtroll noblockplace <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.DIRT, "§cNo Block Place", Collections.singletonList("§ePrevents target from placing blocks!")), ItemInventoryType.OTHER);
+        super("noblockplace", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_BLOCK_PLACE_DESCRIPTION"), "crashedtroll.permissions.troll.noblockplace", "noblockplace <Player>", "crashedtroll noblockplace <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.DIRT, "§cNo Block Place", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_BLOCK_PLACE_DESCRIPTION"))), ItemInventoryType.OTHER);
     }
 
     // Called method.
@@ -49,26 +49,26 @@ public class NoBlockPlaceSubCommand extends SubCommand
                 {
                     // Adds player to the noblockplace arraylist.
                     Constants.NO_BLOCK_PLACE_ARRAYLIST.add(targetPlayer);
-                    StringUtils.sendPlayerMessage(player, "§a" + targetPlayer.getName() + " cannot place blocks anymore!");
+                    StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_BLOCK_PLACE_PLAYER_ENABLE_BLOCK_PLACE").replace("{PLAYER_NAME}", targetPlayer.getName()));
                 }
                 else
                 {
                     // Removes the player from the noblockbreak arraylist.
+                    StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("NO_BLOCK_PLACE_PLAYER_DISABLE_BLOCK_PLACE").replace("{PLAYER_NAME}", targetPlayer.getName()));
                     Constants.NO_BLOCK_PLACE_ARRAYLIST.remove(targetPlayer);
-                    StringUtils.sendPlayerMessage(player, "§c" + targetPlayer.getName() + " can place blocks again!");
                 }
             }
             else
             {
                 // Message if the player is offline.
-                player.sendMessage(Constants.PLAYER_OFFLINE);
+                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("PLAYER_OFFLINE"));
             }
         }
         else
         {
             // Invalid arguments message.
-            StringUtils.sendPlayerMessage(player, "§cInvalid command arguments!");
-            StringUtils.sendPlayerMessage(player, "§c/ct " + this.getCommandSyntax());
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVALID_COMMAND_ARGUMENTS"));
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("COMMAND_SYNTAX_MESSAGE").replace("{SYNTAX}", this.getCommandSyntax()));
         }
     }
 }

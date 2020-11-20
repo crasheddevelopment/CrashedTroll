@@ -27,7 +27,7 @@ public class TeamChatSubCommand extends SubCommand
     // Constructor.
     public TeamChatSubCommand ()
     {
-        super("teamchat", "Teamchat for trollers!", "crashedtroll.permissions.troll.teamchat", "crashedtroll teamchat", "crashedtroll teamchat", CrashedTroll.ITEM_MANAGER.createItem(Material.COMMAND, "§cTeamchat", Collections.singletonList("§eTeamchat for trollers!")), ItemInventoryType.OWN);
+        super("teamchat", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TEAM_CHAT_DESCRIPTION"), "crashedtroll.permissions.troll.teamchat", "teamchat", "crashedtroll teamchat", CrashedTroll.ITEM_MANAGER.createItem(Material.COMMAND, "§cTeamchat", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TEAM_CHAT_DESCRIPTION"))), ItemInventoryType.OWN);
     }
 
     // Called method.
@@ -38,16 +38,16 @@ public class TeamChatSubCommand extends SubCommand
         if (!(Constants.TEAM_CHAT_ARRAYLIST.contains(player)))
         {
             // Adds the player to the teamchat arraylist.
-            StringUtils.sendTeamBroadcast("§a" + player.getName() + " logged into the teamchat!");
+            StringUtils.sendTeamBroadcast("§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TEAM_CHAT_BROADCAST_LOGIN").replace("{PLAYER_NAME}", player.getName()));
             Constants.TEAM_CHAT_ARRAYLIST.add(player);
-            StringUtils.sendPlayerMessage(player, "§aYou logged into the teamchat!");
+            StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TEAM_CHAT_PLAYER_LOGIN"));
         }
         else
         {
             // Removes the player from the teamchat arraylist.
             Constants.TEAM_CHAT_ARRAYLIST.remove(player);
-            StringUtils.sendTeamBroadcast("§c" + player.getName() + " logged out from the teamchat!");
-            StringUtils.sendPlayerMessage(player, "§cYou logged out from the teamchat!");
+            StringUtils.sendTeamBroadcast("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TEAM_CHAT_BROADCAST_LOGOUT").replace("{PLAYER_NAME}", player.getName()));
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("TEAM_CHAT_PLAYER_LOGOUT"));
         }
     }
 }

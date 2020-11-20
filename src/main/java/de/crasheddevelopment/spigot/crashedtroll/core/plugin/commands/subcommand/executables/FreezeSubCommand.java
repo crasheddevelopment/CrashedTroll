@@ -28,7 +28,7 @@ public class FreezeSubCommand extends SubCommand
     // Constructor.
     public FreezeSubCommand ()
     {
-        super("freeze", "Freezes the target!", "crashedtroll.permissions.troll.freeze", "freeze <Player>", "crashedtroll freeze <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.PACKED_ICE, "§cFreeze", Collections.singletonList("§eFreezes the target!")), ItemInventoryType.OTHER);
+        super("freeze", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("FREEZE_DESCRIPTION"), "crashedtroll.permissions.troll.freeze", "freeze <Player>", "crashedtroll freeze <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.PACKED_ICE, "§cFreeze", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("FREEZE_DESCRIPTION"))), ItemInventoryType.OTHER);
     }
 
     // Called method.
@@ -49,26 +49,26 @@ public class FreezeSubCommand extends SubCommand
                 {
                     // Adds target to the freeze arraylist.
                     Constants.FREEZE_ARRAYLIST.add(targetPlayer);
-                    StringUtils.sendPlayerMessage(player, "§a" + targetPlayer.getName() + " is now frozen!");
+                    StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("FREEZE_TARGET_FROZEN").replace("{PLAYER_NAME}", targetPlayer.getName()));
                 }
                 else
                 {
                     // Removes target from the freeze arraylist.
                     Constants.FREEZE_ARRAYLIST.remove(targetPlayer);
-                    StringUtils.sendPlayerMessage(player, "§c" + targetPlayer.getName() + " isn't frozen anymore!");
+                    StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("FREEZE_TARGET_NOT_FROZEN_ANYMORE").replace("{PLAYER_NAME}", targetPlayer.getName()));
                 }
             }
             else
             {
                 // Message if the player is offline.
-                player.sendMessage(Constants.PLAYER_OFFLINE);
+                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("PLAYER_OFFLINE"));
             }
         }
         else
         {
             // Invalid arguments message.
-            StringUtils.sendPlayerMessage(player, "§cInvalid command arguments!");
-            StringUtils.sendPlayerMessage(player, "§c/ct " + this.getCommandSyntax());
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVALID_COMMAND_ARGUMENTS"));
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("COMMAND_SYNTAX_MESSAGE").replace("{SYNTAX}", this.getCommandSyntax()));
         }
     }
 }

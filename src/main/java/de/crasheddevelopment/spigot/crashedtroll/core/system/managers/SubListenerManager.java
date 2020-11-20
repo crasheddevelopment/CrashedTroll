@@ -19,20 +19,24 @@ import java.util.ArrayList;
 
 public class SubListenerManager
 {
+    // Initialize variable.
     private final ArrayList<SubListener> subListenerArrayList = new ArrayList<>();
 
+    // Reload the sub listeners.
     public void reloadSubListeners ()
     {
-        this.subListenerArrayList.add(new GodmodeSubListener());
         this.subListenerArrayList.add(new FreezeSubListener());
+        this.subListenerArrayList.add(new GodmodeSubListener());
         this.subListenerArrayList.add(new NoBlockBreakSubListener());
         this.subListenerArrayList.add(new NoBlockPlaceSubListener());
         this.subListenerArrayList.add(new ScreenSubListener());
         this.subListenerArrayList.add(new TeamChatSubListener());
         this.subListenerArrayList.add(new TrollItemSubListener());
+        this.subListenerArrayList.add(new LanguageFileOutdatedSubListener());
         this.subListenerArrayList.add(new UpdateSubListener());
     }
 
+    // Returns the arraylist.
     public ArrayList<SubListener> getSubListenerArrayList ()
     {
         return this.subListenerArrayList;

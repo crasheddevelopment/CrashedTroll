@@ -16,7 +16,6 @@ import de.crasheddevelopment.spigot.crashedtroll.CrashedTroll;
 import de.crasheddevelopment.spigot.crashedtroll.core.plugin.commands.subcommand.SubCommand;
 import de.crasheddevelopment.spigot.crashedtroll.enums.ItemInventoryType;
 import de.crasheddevelopment.spigot.crashedtroll.utils.BukkitUtils;
-import de.crasheddevelopment.spigot.crashedtroll.utils.Constants;
 import de.crasheddevelopment.spigot.crashedtroll.utils.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -28,7 +27,7 @@ public class FakeOPSubCommand extends SubCommand
     // Constructor.
     public FakeOPSubCommand ()
     {
-        super("fakeop", "Makes the target thinks that he has op!", "crashedtroll.permissions.troll.fakeop", "fakeop <Player>", "crashedtroll fakeop <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.COMMAND, "§cFake-OP", Collections.singletonList("§eMakes the target thinks that he has op!")), ItemInventoryType.OTHER);
+        super("fakeop", CrashedTroll.LANGUAGE_MANAGER.getLanguageString("FAKE_OP_DESCRIPTION"), "crashedtroll.permissions.troll.fakeop", "fakeop <Player>", "crashedtroll fakeop <Player>", CrashedTroll.ITEM_MANAGER.createItem(Material.COMMAND, "§cFake-OP", Collections.singletonList("§e" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("FAKE_OP_DESCRIPTION"))), ItemInventoryType.OTHER);
     }
 
     // Called method.
@@ -46,19 +45,19 @@ public class FakeOPSubCommand extends SubCommand
             {
                 // Sends the player a message that seems like the op message.
                 targetPlayer.sendMessage("§7§o[CONSOLE: Opped " + targetPlayer.getName() + "]");
-                StringUtils.sendPlayerMessage(player, "§a" + targetPlayer.getName() + " thinks he has OP now!");
+                StringUtils.sendPlayerMessage(player, "§a" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("FAKE_OP_EXECUTE").replace("{PLAYER_NAME}", targetPlayer.getName()));
             }
             else
             {
                 // Message if the player is offline.
-                player.sendMessage(Constants.PLAYER_OFFLINE);
+                player.sendMessage("§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("PLAYER_OFFLINE"));
             }
         }
         else
         {
             // Invalid arguments message.
-            StringUtils.sendPlayerMessage(player, "§cInvalid command arguments!");
-            StringUtils.sendPlayerMessage(player, "§c/ct " + this.getCommandSyntax());
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("INVALID_COMMAND_ARGUMENTS"));
+            StringUtils.sendPlayerMessage(player, "§c" + CrashedTroll.LANGUAGE_MANAGER.getLanguageString("COMMAND_SYNTAX_MESSAGE").replace("{SYNTAX}", this.getCommandSyntax()));
         }
     }
 }

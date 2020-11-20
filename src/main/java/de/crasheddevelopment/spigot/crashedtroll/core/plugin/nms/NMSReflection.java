@@ -41,7 +41,7 @@ public class NMSReflection
         return null;
     }
 
-    // Returns the craftplayer object.
+    // Returns the CraftPlayer object.
     private static Object getCraftPlayerHandleObject (Player player)
     {
         try

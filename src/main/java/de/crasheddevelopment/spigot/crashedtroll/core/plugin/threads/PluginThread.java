@@ -27,9 +27,17 @@ public class PluginThread
     {
         this.bukkitScheduler = Bukkit.getScheduler().scheduleSyncRepeatingTask(CrashedTroll.getPlugin(CrashedTroll.class), () ->
         {
+            // Closes the inventories from the players.
             for (Player player : Constants.SCREEN_BLOCK_ARRAYLIST)
             {
                 player.closeInventory();
+            }
+
+            // Heals and feed the players.
+            for (Player player : Constants.GODMODE_ARRAYLIST)
+            {
+                player.setHealth(20);
+                player.setFoodLevel(20);
             }
         }, 11, 11);
     }

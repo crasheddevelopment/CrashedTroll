@@ -1,0 +1,6 @@
+Used libraries for this project. (Included in the jar file!)
+If you have rights to this library and do not want to be reproduced in this way, please contact me immediately!
+---------------------------------------------------------------------------------------------------------------
+
+Apache © Apache HttpComponents
+Maven: https://mvnrepository.com/artifact/org.apache.httpcomponents/

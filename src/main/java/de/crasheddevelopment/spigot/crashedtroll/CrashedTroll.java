@@ -15,9 +15,7 @@ package de.crasheddevelopment.spigot.crashedtroll;
 import de.crasheddevelopment.spigot.crashedtroll.core.plugin.commands.TrollCommand;
 import de.crasheddevelopment.spigot.crashedtroll.core.plugin.listeners.EventListener;
 import de.crasheddevelopment.spigot.crashedtroll.core.plugin.threads.PluginThread;
-import de.crasheddevelopment.spigot.crashedtroll.core.system.managers.ItemManager;
-import de.crasheddevelopment.spigot.crashedtroll.core.system.managers.SubCommandManager;
-import de.crasheddevelopment.spigot.crashedtroll.core.system.managers.SubListenerManager;
+import de.crasheddevelopment.spigot.crashedtroll.core.system.managers.*;
 import de.crasheddevelopment.spigot.crashedtroll.core.system.network.PluginUpdater;
 import de.crasheddevelopment.spigot.crashedtroll.utils.Constants;
 import de.crasheddevelopment.spigot.crashedtroll.utils.StringUtils;
@@ -27,10 +25,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class CrashedTroll extends JavaPlugin
 {
     // Initialize variables.
-    public static final ItemManager ITEM_MANAGER = new ItemManager();
+    public static final ConfigurationManager CONFIGURATION_MANAGER = new ConfigurationManager();
     public static final SubCommandManager SUB_COMMAND_MANAGER = new SubCommandManager();
     public static final SubListenerManager SUB_LISTENER_MANAGER = new SubListenerManager();
+    public static final LanguageManager LANGUAGE_MANAGER = new LanguageManager();
     public static final PluginThread PLUGIN_THREAD = new PluginThread();
+
+    public static FileManager FILE_MANAGER;
+    public static ItemManager ITEM_MANAGER;
 
     // Method called, if the plugin is enabled!
     @Override
@@ -56,13 +58,16 @@ public class CrashedTroll extends JavaPlugin
         StringUtils.sendInformation("Version: " + Constants.VERSION);
         StringUtils.sendInformation("Build version: " + Constants.BUILD);
         StringUtils.sendEmptyLine();
+        StringUtils.sendInformation("Loading settings...");
+        this.loadSettings();
+        StringUtils.sendInformation("Settings loaded!");
         StringUtils.sendInformation("Loading commands...");
         this.loadCommands();
         StringUtils.sendInformation("Commands loaded!");
         StringUtils.sendInformation("Loading listeners...");
         this.loadListeners();
         StringUtils.sendInformation("Listeners loaded!");
-        StringUtils.sendInformation("Start plugin thread...");
+        StringUtils.sendInformation("Starting plugin thread...");
         PLUGIN_THREAD.startThread();
         StringUtils.sendInformation("Plugin thread started!");
     }
@@ -93,5 +98,15 @@ public class CrashedTroll extends JavaPlugin
 
         // Reloading the listeners.
         SUB_LISTENER_MANAGER.reloadSubListeners();
+    }
+
+    // Loads the settings.
+    private void loadSettings ()
+    {
+        FILE_MANAGER = new FileManager();
+        CONFIGURATION_MANAGER.loadConfigurations();
+        LANGUAGE_MANAGER.searchUpdates();
+        LANGUAGE_MANAGER.checkLanguageFile(Constants.LANGUAGE);
+        ITEM_MANAGER = new ItemManager();
     }
 }
