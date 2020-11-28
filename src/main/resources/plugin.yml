@@ -1,5 +1,5 @@
 name: CrashedTroll
-version: 3.1.0
+version: 3.1.1
 author: CrashedLife
 main: de.crasheddevelopment.spigot.crashedtroll.CrashedTroll
 commands:

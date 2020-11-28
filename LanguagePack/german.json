@@ -1,6 +1,6 @@
 {
 	"Configuration Version": "1.0.0",
-	"SUPPORTED_PLUGIN_VERSIONS": "[3.1.0]",
+	"SUPPORTED_PLUGIN_VERSIONS": "[3.1.0:3.1.1]",
 	"CHANGELOG_DESCRIPTION": "Zeigt den neusten Changelog an.",
 	"COMMAND_NOT_FOUND": "Befehl nicht gefunden!",
 	"COMMAND_SYNTAX_MESSAGE": "Syntax: /ct {SYNTAX}",

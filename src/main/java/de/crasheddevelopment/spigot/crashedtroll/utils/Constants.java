@@ -23,10 +23,10 @@ import java.util.HashMap;
 public class Constants
 {
     // Version string.
-    public static final String VERSION = "3.1.0";
+    public static final String VERSION = "3.1.1";
 
     // Build string.
-    public static final String BUILD = "9";
+    public static final String BUILD = "10";
 
     // Plugin prefix string.
     public static final String PREFIX = "§7[§5§lCrashedTroll§7]: ";

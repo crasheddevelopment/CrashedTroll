@@ -96,13 +96,13 @@ public class LanguageManager
     public void searchUpdates ()
     {
         // Initialize variable.
-        JsonObject jsonObject = JsonUtils.getJsonObjectFromURL("https://raw.githubusercontent.com/crasheddevelopment/CrashedTroll/main/LanguagePack/index.json");
+        JsonObject jsonObject = JsonUtils.getJsonObjectFromURL("https://raw.githubusercontent.com/crasheddevelopment/CrashedTroll/master/LanguagePack/index.json");
 
         // Check if the json object is not null.
         if (jsonObject != null)
         {
             // Gets the content of the json and downloads the language files.
-            jsonObject.entrySet().forEach(jsonElementEntry -> DownloadUtils.downloadFile("https://raw.githubusercontent.com/crasheddevelopment/CrashedTroll/main/LanguagePack/" + jsonElementEntry.getValue().getAsString(), Constants.getPluginFolder("\\languages\\" + jsonElementEntry.getValue().getAsString())));
+            jsonObject.entrySet().forEach(jsonElementEntry -> DownloadUtils.downloadFile("https://raw.githubusercontent.com/crasheddevelopment/CrashedTroll/master/LanguagePack/" + jsonElementEntry.getValue().getAsString(), Constants.getPluginFolder("\\languages\\" + jsonElementEntry.getValue().getAsString())));
         }
 
         // Loads the language file.

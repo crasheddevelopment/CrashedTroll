@@ -36,12 +36,6 @@ public class ChangelogSubCommand extends SubCommand
     {
         // Changelog messages.
         StringUtils.sendPlayerMessage(player, "§cChangelog for the version " + Constants.VERSION + "!");
-        StringUtils.sendPlayerMessage(player, "§7[§a+§7]: §eAdded changelog as command.");
-        StringUtils.sendPlayerMessage(player, "§7[§a+§7]: §eAdded language as command.");
-        StringUtils.sendPlayerMessage(player, "§7[§a+§7]: §eAdded guardian mode in the screen command.");
-        StringUtils.sendPlayerMessage(player, "§7[§a+§7]: §eAdded language support.");
-        StringUtils.sendPlayerMessage(player, "§7[§e=§7]: §eMakes the godmode more powerful §7(Auto Heal & Feed)");
-        StringUtils.sendPlayerMessage(player, "§7[§e=§7]: §eFixed bug in InventoryDrop §7[BUG #1]");
-        StringUtils.sendPlayerMessage(player, "§7[§e=§7]: §eFixed false command syntax §7[BUG #2]");
+        StringUtils.sendPlayerMessage(player, "§7[§e=§7]: §eFixed bug that didn't download the language files! §7[BUG #3]");
     }
 }

@@ -51,7 +51,7 @@
 	"SCREEN_DESCRIPTION": "Make weird things on the target screen!",
 	"SCREEN_GUARDIAN_DESCRIPTION": "Shows the guardian on the target screen!",
 	"SCREEN_GUARDIAN_SHOW": "{PLAYER_NAME} sees now the guardian on his screen!",
-	"SUPPORTED_PLUGIN_VERSIONS": "[3.1.0]",
+	"SUPPORTED_PLUGIN_VERSIONS": "[3.1.0:3.1.1]",
 	"TEAM_CHAT_BROADCAST_LOGIN": "{PLAYER_NAME} logged into the chat!",
 	"TEAM_CHAT_BROADCAST_LOGOUT": "{PLAYER_NAME} logged out from the chat!",
 	"TEAM_CHAT_DESCRIPTION": "Makes the trollers allow to chat in a private chat!",
